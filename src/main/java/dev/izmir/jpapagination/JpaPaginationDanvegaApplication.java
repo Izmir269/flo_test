@@ -5,11 +5,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Collections;
+
 @SpringBootApplication
 public class JpaPaginationDanvegaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JpaPaginationDanvegaApplication.class, args);
+		SpringApplication app = new SpringApplication(JpaPaginationDanvegaApplication.class);
+		String port = System.getenv("PORT");
+		app.setDefaultProperties(Collections.singletonMap("server.port", port == null ? "8082" : port));
+		app.run(args);
+
 	}
 
 
